@@ -1,8 +1,14 @@
 import React from 'react';
 
-export const Content = ({ children }: any) => {
+interface IContentProps {
+    children: React.ReactChild,
+    title: string
+}
+
+export const Content = ({ children, title }: IContentProps) => {
     return (
         <div className="content">
+            <h1 className="content-title">{title}</h1>
             {children}
         </div>
     );

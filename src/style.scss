@@ -1,0 +1,106 @@
+$mainBGcolor: #303d46;
+$light-black: #394754;
+
+$text: #a0a2a1;
+
+$fontSize-2em: 2em;
+
+$borderColor: #41a8af;
+
+$iconStatusInProgress: #facf04;
+$iconStatusDone: #4ba984;
+$iconStatusDeleted: #fc281d;
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    color: $text;
+}
+
+.content {
+    background-color: $mainBGcolor;
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 0 40px;
+
+    &-title {
+        text-align: center;
+    }
+}
+
+
+.header {
+    background: $light-black;
+    text-align: center;
+}
+
+.footer {
+    padding: 0.67em 0;
+    font-size: $fontSize-2em;
+    background: $light-black;
+    text-align: center;
+}
+
+.todoList {
+    list-style: none;
+}
+
+.todoListItem {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background: $light-black;
+
+    &.completed {
+        .icon-status {
+            background: $iconStatusDone;
+        }
+    }
+
+    .icon-status {
+        width: 10px;
+        height: 10px;
+        flex: none; // margin-right: 10px;
+        border-radius: 50%;
+        background: $iconStatusInProgress
+    }
+
+    .title {
+        padding: 0 10px;
+        flex-grow: 1;
+        text-transform: capitalize;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .trigger {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        border: 1px solid $borderColor;
+        background: $borderColor;
+        transition: transform 300ms ease;
+    }
+}
