@@ -8,13 +8,15 @@ interface ITodoListProps {
     todoList: ITodoListItemsProps[]
 }
 
-
 export const TodoList = ({ todoList }: ITodoListProps) => {
-    const todoListArray = todoList.map(({ id, title, completed }) => 
-        {   
-            console.log(id, title, completed)
-            return <TodoListItem title={title} completed={completed} id={id} key={id}/>
-        }
+    const todoListArray = todoList.map(({ id, title, completed }) => {
+        return <TodoListItem
+            title={title}
+            completed={completed}
+            id={id}
+            key={id}
+        />
+    }
     );
 
     return (
