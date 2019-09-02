@@ -5,19 +5,23 @@ import ITodoListItemsProps from '../TodoListItem/ITodoListItems.interface'
 
 
 interface ITodoListProps {
-    todoList: ITodoListItemsProps[]
+    todoList: ITodoListItemsProps[],
+    onToggleComplete: (id: number) => void
 }
 
-export const TodoList = ({ todoList }: ITodoListProps) => {
+export const TodoList = ({ todoList, onToggleComplete }: ITodoListProps) => {
     const todoListArray = todoList.map(({ id, title, completed }) => {
         return <TodoListItem
             title={title}
             completed={completed}
             id={id}
             key={id}
+            onToggleComplete={onToggleComplete}
         />
     }
     );
+
+    console.log('Rerender TODOList')
 
     return (
         <div className="todoList-container">

@@ -6,10 +6,7 @@ interface IButtonProps {
     onClick: () => void
 }
 
-export const Button = ({ className, children, onClick }: IButtonProps) => {
-    return (
-        <button className={className} onClick={onClick}>
-            {children}
-        </button>
-    )
-}
+export const Button = ({ className, children, onClick }: IButtonProps) =>
+    <button className={className} onClick={onClick}>
+        {children}
+    </button>

@@ -21,11 +21,11 @@ export class TodoListItem extends PureComponent<ITodoListItemsProps, IState> {
     }
 
     render() {
-        const { title, completed, id } = this.props;
+        const { title, completed, id, onToggleComplete } = this.props;
         const classNames = `todoListItem ${completed ? 'completed' : ''} ${this.state.isOpen ? 'expanded' : ''}`;
-
+        console.log('Rerender TODOListItenm #' + id);
         return (
-            <li className={classNames}  onClick={this.toggleOpenStatus}>
+            <li className={classNames} onClick={this.toggleOpenStatus}>
                 <div className="icon-status"></div>
                 <div className="title">{title}</div>
                 <div className="trigger">
@@ -36,8 +36,8 @@ export class TodoListItem extends PureComponent<ITodoListItemsProps, IState> {
 
                 {this.state.isOpen &&
                     <div className="actions">
-                        <Button className='btn btn-red' onClick={() => console.log('clicked')}>delete</Button>
-                        <Button className={`btn ${completed ? 'btn-green' : 'btn-yellow'}`} onClick={() => console.log('clicked')}>Completed</Button>
+                        <Button className='btn btn-red' onClick={() => onToggleComplete(id)}>delete</Button>
+                        <Button className={`btn ${completed ? 'btn-green' : 'btn-yellow'}`} onClick={() => onToggleComplete(id)}>Completed</Button>
                     </div>}
             </li>
         );

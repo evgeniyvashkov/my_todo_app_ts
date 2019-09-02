@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+$white : #fff;
+
 $mainBGcolor: #303d46;
 $light-black: #394754;
 
@@ -6,6 +10,7 @@ $text: #a0a2a1;
 $fontSize-2em: 2em;
 
 $borderColor: #41a8af;
+$borderColorHover: #fff;
 
 $iconStatusInProgress: #facf04;
 $iconStatusDone: #4ba984;
@@ -23,6 +28,7 @@ body,
 }
 
 body {
+    overflow-y:scroll;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -62,14 +68,20 @@ body {
 
 .todoListItem {
     width: 400px;
+    max-height: 60px;
     display: flex;
-    align-items: center;
+    position: relative;
+    align-items: flex-start;
     margin: 0 auto;
-    padding: 10px 20px;
+    padding: 20px;
+    box-sizing: border-box;
     border: 1px solid $borderColor;
     border-radius: 5px;
     margin-bottom: 15px;
     background: $light-black;
+    transition: max-height 700ms linear;
+    overflow: hidden;
+    cursor: pointer;
 
     &.completed {
         .icon-status {
@@ -77,16 +89,32 @@ body {
         }
     }
 
+    &.expanded {
+        max-height: 500px;
+        flex-wrap: wrap;
+
+        .title {
+            white-space: normal;
+        }
+
+        .trigger {
+            transform: rotate(180deg)
+        }
+    }
+
     .icon-status {
+        position: absolute;
+        top: 23px;
+        left: 10px;
         width: 10px;
         height: 10px;
-        flex: none; // margin-right: 10px;
+        flex: none;
         border-radius: 50%;
         background: $iconStatusInProgress
     }
 
     .title {
-        padding: 0 10px;
+        padding: 0 15px 0 10px;
         flex-grow: 1;
         text-transform: capitalize;
         overflow: hidden;
@@ -95,12 +123,71 @@ body {
     }
 
     .trigger {
+        position: absolute;
+        top: 19px;
+        right: 10px;
+
         width: 15px;
         height: 15px;
         flex-shrink: 0;
         border-radius: 50%;
         border: 1px solid $borderColor;
         background: $borderColor;
-        transition: transform 300ms ease;
+        transition: transform 200ms ease;
+
+        &:hover {
+            border: 1px solid $borderColorHover;
+            background: $borderColorHover;
+        }
+    }
+
+    .actions {
+        width: 100%;
+        margin-top: 20px;
+        text-align: right;
+
+        .btn {
+            margin-left: 5px;
+        }
+    }
+}
+
+.btn {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    color: $white;
+    padding: 3px 9px;
+    font-size: 13px;
+    transition: background-color 300ms ease;
+
+    &-red {
+        background-color: #f35958;
+        box-shadow: 0px 3px 0px #c24746;
+
+        &:hover {
+            background-color: #e65453;
+        }
+    }
+
+    &-green {
+        background-color: #0aa699;
+        box-shadow: 0px 3px 0px #08847a;
+
+        &:hover {
+            background-color: #099d91;
+        }
+    }
+
+    &-yellow {
+        background-color: #fdd01c;
+        box-shadow: 0px 3px 0px #caa616;
+
+        &:hover {
+            background-color: #f0c51a;
+        }
     }
 }
