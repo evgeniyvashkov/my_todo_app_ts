@@ -6,10 +6,11 @@ import ITodoListItemsProps from '../TodoListItem/ITodoListItems.interface'
 
 interface ITodoListProps {
     todoList: ITodoListItemsProps[],
-    onToggleComplete: (id: number) => void
+    onToggleComplete: (id: number) => void,
+    onDelete: (id: number) => void,
 }
 
-export const TodoList = ({ todoList, onToggleComplete }: ITodoListProps) => {
+export const TodoList = ({ todoList, onToggleComplete,onDelete }: ITodoListProps) => {
     const todoListArray = todoList.map(({ id, title, completed }) => {
         return <TodoListItem
             title={title}
@@ -17,6 +18,7 @@ export const TodoList = ({ todoList, onToggleComplete }: ITodoListProps) => {
             id={id}
             key={id}
             onToggleComplete={onToggleComplete}
+            onDelete={onDelete}
         />
     }
     );

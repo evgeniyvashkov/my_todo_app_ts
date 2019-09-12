@@ -87,6 +87,10 @@ body {
         .icon-status {
             background: $iconStatusDone;
         }
+
+        .title {
+            text-decoration: line-through;
+        }
     }
 
     &.expanded {
