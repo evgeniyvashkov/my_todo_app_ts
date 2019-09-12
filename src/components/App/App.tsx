@@ -23,6 +23,16 @@ export class App extends Component<{}, IAppState> {
         }
     }
 
+    componentDidMount() {
+        const todoList = fetch(`https://jsonplaceholder.typicode.com/users/1/todos?_limit=30`)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    todoList:data
+                })
+            });
+    }
+
     //toggle task's status (complited, in progress)
     onToggleComplete = (id: number) => {
         let newTodoList = this.state.todoList.map(item => {
@@ -65,7 +75,7 @@ export class App extends Component<{}, IAppState> {
             <Fragment>
                 <Header>TODO App</Header>
                 <Content title="Todo List">
-                    <TodoList todoList={this.state.todoList} onToggleComplete={this.onToggleComplete} onDelete={this.onDeleteItem}/>
+                    <TodoList todoList={this.state.todoList} onToggleComplete={this.onToggleComplete} onDelete={this.onDeleteItem} />
                 </Content>
                 <Footer />
             </Fragment >
